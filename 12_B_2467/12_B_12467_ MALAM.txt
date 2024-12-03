@@ -1,0 +1,8 @@
+1. Exception handling membantu meningkatkan kualitas dan ketahanan sistem dengan menangani error yang muncul tanpa menyebabkan aplikasi berhenti secara tiba-tiba.
+
+2.try: Digunakan untuk menulis kode yang berpotensi menimbulkan error.
+catch: Menangkap dan menangani error yang terjadi pada blok
+
+3.Mantap jiwa
+
+https://github.com/alipbudi06/12_B_2467.git
