@@ -1,39 +1,40 @@
 console.log("[BARATIE RESTAURANT]");
 console.log("_".repeat(50));
 
-function processPayment(hargaTotal, bayar, metode) {
+function processPayment(total, bayar, method) {
   try {
-    if (typeof hargaTotal !== "number" || typeof bayar !== "number") {
-      throw new Error("Both total price and amount given must be numbers");
+    if (typeof total !== "number" || typeof bayar !== "number") {
+      throw new Error("Both total price and amount paid must be numbers");
     }
-    if (bayar < hargaTotal) {
-      throw new Error("Amount given is less than the total price");
+    if (bayar < total) {
+      throw new Error("Insufficient payment amount");
     }
     const validMethods = ["cash", "credit", "voucher"];
-    if (!validMethods.includes(metode)) {
+    if (!validMethods.includes(method)) {
       throw new Error(
-        `Unknown payment method: ${metode}. Accepted methods: ${validMethods.join(
+        `Unsupported payment method: ${method}. Allowed methods: ${validMethods.join(
           ", "
         )}`
       );
     }
-    const kembalian = bayar - hargaTotal;
-    console.log(`Transaction successful. Change to return: ${kembalian}`);
+    const change = bayar - total;
+    console.log(`Payment successful. Change to return: ${change}`);
   } catch (error) {
     console.log(`Error: ${error.message}`);
   } finally {
     console.log("Cleaning up resources...");
   }
 }
+
 const testCases = [
-  { label: "[1]", total: 50, bayar: "fifty", metode: "cash" },
-  { label: "[2]", total: 50, bayar: 35, metode: "credit" },
-  { label: "[3]", total: 50, bayar: 175, metode: "voucher" },
-  { label: "[4]", total: 50, bayar: 175, metode: "paypal" },
+  { label: "[1]", total: 50, bayar: "fifty", method: "credit" },
+  { label: "[2]", total: 50, bayar: 35, method: "cash" },
+  { label: "[3]", total: 50, bayar: 75, method: "voucher" },
+  { label: "[4]", total: 50, bayar: 75, method: "bitcoin" }, 
 ];
 
-testCases.forEach(({ label, total, bayar, metode }) => {
+testCases.forEach(({ label, total, bayar, method }) => {
   console.log(label);
-  processPayment(total, bayar, metode);
+  processPayment(total, bayar, method);
   console.log("_".repeat(50));
 });
